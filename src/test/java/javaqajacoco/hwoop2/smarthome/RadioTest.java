@@ -104,9 +104,22 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldNotWorkPrev() {
+    public void shouldNotWorkPrevIfEqualToZero() {
         Radio radio = new Radio();
         radio.setCurrentRadioChannel(0);
+        radio.prevRadioChannel();
+
+        int expected = 0;
+        int actual = radio.getCurrentRadioChannel();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldNotWorkPrevIfAbove9() {
+        Radio radio = new Radio();
+        radio.setCurrentRadioChannel(10);
         radio.prevRadioChannel();
 
         int expected = 0;
@@ -143,12 +156,26 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldDecreaseVolume() {
+    public void shouldDecreaseVolumeEqual100() {
         Radio radio = new Radio();
         radio.currentSoundVolume = 100;
         radio.decreaseVolume();
 
         int expected = 99;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+
+    }
+
+
+    @Test
+    public void shouldNotDecreaseVolumeAbove100() {
+        Radio radio = new Radio();
+        radio.currentSoundVolume = 101;
+        radio.decreaseVolume();
+
+        int expected = 101;
         int actual = radio.getCurrentSoundVolume();
 
         Assertions.assertEquals(expected, actual);

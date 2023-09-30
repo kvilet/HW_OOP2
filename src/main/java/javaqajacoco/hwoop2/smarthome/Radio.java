@@ -39,6 +39,7 @@ public class Radio {
             return;
         }
     }
+
     public void prevRadioChannel() {
 
         if (currentRadioChannel == 0) {
@@ -59,6 +60,6 @@ public class Radio {
             return;
         }
         currentRadioChannel = newCurrentRadioChannel;
-        }
     }
+}
 
