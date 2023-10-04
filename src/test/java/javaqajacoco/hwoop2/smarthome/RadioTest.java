@@ -83,7 +83,7 @@ public class RadioTest {
         radio.setCurrentRadioChannel(9);
         radio.nextRadioChannel();
 
-        int expected = 9;
+        int expected = 0;
         int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -109,7 +109,7 @@ public class RadioTest {
         radio.setCurrentRadioChannel(0);
         radio.prevRadioChannel();
 
-        int expected = 0;
+        int expected = 9;
         int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);
@@ -119,10 +119,10 @@ public class RadioTest {
     @Test
     public void shouldNotWorkPrevIfAbove9() {
         Radio radio = new Radio();
-        radio.setCurrentRadioChannel(10);
+        radio.setCurrentRadioChannel(8);
         radio.prevRadioChannel();
 
-        int expected = 0;
+        int expected = 7;
         int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);

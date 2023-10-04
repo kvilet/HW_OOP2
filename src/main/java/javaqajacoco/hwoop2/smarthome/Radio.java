@@ -17,6 +17,8 @@ public class Radio {
 
         if (currentSoundVolume < 100) {
             currentSoundVolume = currentSoundVolume + 1;
+        } else {
+            currentSoundVolume = 100;
         }
     }
 
@@ -31,26 +33,22 @@ public class Radio {
     }
 
     public void nextRadioChannel() {
-        if (currentRadioChannel < 9) {
+        if (currentRadioChannel != 9) {
             currentRadioChannel = currentRadioChannel + 1;
-        }
-
-        if (currentRadioChannel == 9) {
-            return;
+        } else {
+            currentRadioChannel = 0;
         }
     }
 
     public void prevRadioChannel() {
 
-        if (currentRadioChannel == 0) {
-            return;
-        }
-
-        if (currentRadioChannel <= 9) {
+        if (currentRadioChannel != 0) {
             currentRadioChannel = currentRadioChannel - 1;
+        } else {
+            currentRadioChannel = 9;
         }
-
     }
+
 
     public void setCurrentRadioChannel(int newCurrentRadioChannel) {
         if (newCurrentRadioChannel < 0) {
@@ -61,5 +59,6 @@ public class Radio {
         }
         currentRadioChannel = newCurrentRadioChannel;
     }
+
 }
 
