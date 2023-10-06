@@ -2,8 +2,8 @@ package javaqajacoco.hwoop2.smarthome;
 
 public class Radio {
 
-    public int currentRadioChannel;
-    public int currentSoundVolume;
+    private int currentRadioChannel;
+    private int currentSoundVolume;
 
     public int getCurrentRadioChannel() {
         return currentRadioChannel;
@@ -15,7 +15,7 @@ public class Radio {
 
     public void increaseVolume() {
 
-        if (currentSoundVolume < 100) {
+        if (currentSoundVolume != 100) {
             currentSoundVolume = currentSoundVolume + 1;
         } else {
             currentSoundVolume = 100;
@@ -23,14 +23,14 @@ public class Radio {
     }
 
     public void decreaseVolume() {
-        if (currentSoundVolume == 0) {
-            return;
-        }
-        if (currentSoundVolume <= 100) {
-            currentSoundVolume = currentSoundVolume - 1;
-        }
 
+        if (currentSoundVolume != 0) {
+            currentSoundVolume = currentSoundVolume - 1;
+        } else {
+            currentSoundVolume = 0;
+        }
     }
+
 
     public void nextRadioChannel() {
         if (currentRadioChannel != 9) {
@@ -60,5 +60,16 @@ public class Radio {
         currentRadioChannel = newCurrentRadioChannel;
     }
 
+    public void setCurrentSoundVolume(int newCurrentSoundVolume) {
+        if (newCurrentSoundVolume < 0) {
+            currentSoundVolume = 0;
+            return;
+        }
+        if (newCurrentSoundVolume > 100) {
+            currentSoundVolume = 100;
+            return;
+        }
+        currentSoundVolume = newCurrentSoundVolume;
+    }
 }
 

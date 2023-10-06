@@ -11,7 +11,7 @@ public class RadioTest {
         radio.setCurrentRadioChannel(4);
 
         int expected = 4;
-        int actual = radio.currentRadioChannel;
+        int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);
     }
@@ -22,7 +22,7 @@ public class RadioTest {
         radio.setCurrentRadioChannel(0);
 
         int expected = 0;
-        int actual = radio.currentRadioChannel;
+        int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);
 
@@ -35,7 +35,7 @@ public class RadioTest {
         radio.setCurrentRadioChannel(9);
 
         int expected = 9;
-        int actual = radio.currentRadioChannel;
+        int actual = radio.getCurrentRadioChannel();
 
         Assertions.assertEquals(expected, actual);
 
@@ -132,7 +132,7 @@ public class RadioTest {
     @Test
     public void shouldIncreaseVolume() {
         Radio radio = new Radio();
-        radio.currentSoundVolume = 99;
+        radio.setCurrentSoundVolume(99);
         radio.increaseVolume();
 
         int expected = 100;
@@ -145,7 +145,7 @@ public class RadioTest {
     @Test
     public void shouldNotIncreaseVolume() {
         Radio radio = new Radio();
-        radio.currentSoundVolume = 100;
+        radio.setCurrentSoundVolume(100);
         radio.increaseVolume();
 
         int expected = 100;
@@ -158,7 +158,7 @@ public class RadioTest {
     @Test
     public void shouldDecreaseVolumeEqual100() {
         Radio radio = new Radio();
-        radio.currentSoundVolume = 100;
+        radio.setCurrentSoundVolume(100);
         radio.decreaseVolume();
 
         int expected = 99;
@@ -170,23 +170,9 @@ public class RadioTest {
 
 
     @Test
-    public void shouldNotDecreaseVolumeAbove100() {
-        Radio radio = new Radio();
-        radio.currentSoundVolume = 101;
-        radio.decreaseVolume();
-
-        int expected = 101;
-        int actual = radio.getCurrentSoundVolume();
-
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-
-    @Test
     public void shouldNotDecreaseVolume() {
         Radio radio = new Radio();
-        radio.currentSoundVolume = 0;
+        radio.setCurrentSoundVolume(0);
         radio.decreaseVolume();
 
         int expected = 0;
@@ -196,5 +182,83 @@ public class RadioTest {
 
     }
 
+    @Test
+    public void shouldNotSetNewSoundVolumeAbove100() {
 
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(101);
+
+        int expected = 100;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void shouldNotSetNewSoundVolumeBelow0() {
+
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(-1);
+
+        int expected = 0;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void shouldSetNewSoundVolumeIfEqual100() {
+
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(100);
+
+        int expected = 100;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void shouldSetNewSoundVolumeIfEqual0() {
+
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(0);
+
+        int expected = 0;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    public void shouldSetNewSoundVolumeIfBelow100() {
+
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(99);
+
+        int expected = 99;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldSetNewSoundVolumeIfAbove0() {
+
+        Radio radio = new Radio();
+        radio.setCurrentSoundVolume(1);
+
+        int expected = 1;
+        int actual = radio.getCurrentSoundVolume();
+
+        Assertions.assertEquals(expected, actual);
+    }
 }
