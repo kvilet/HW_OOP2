@@ -4,6 +4,22 @@ public class Radio {
 
     private int currentRadioChannel;
     private int currentSoundVolume;
+    private int channelQuantity = 10;
+    private int maxChannel = channelQuantity - 1;
+
+    public Radio(int channelQuantity)
+    {
+    this.channelQuantity = channelQuantity;
+    if (channelQuantity == 0) {
+        maxChannel = 0;
+    } else {
+        this.maxChannel = channelQuantity - 1;
+    }
+    }
+
+    public Radio () {
+
+    }
 
     public int getCurrentRadioChannel() {
         return currentRadioChannel;
@@ -11,6 +27,12 @@ public class Radio {
 
     public int getCurrentSoundVolume() {
         return currentSoundVolume;
+    }
+    public int getChannelQuantity() {
+        return channelQuantity;
+    }
+    public int getMaxChannel() {
+        return maxChannel;
     }
 
     public void increaseVolume() {
@@ -33,7 +55,7 @@ public class Radio {
 
 
     public void nextRadioChannel() {
-        if (currentRadioChannel != 9) {
+        if (currentRadioChannel != maxChannel) {
             currentRadioChannel = currentRadioChannel + 1;
         } else {
             currentRadioChannel = 0;
@@ -45,7 +67,7 @@ public class Radio {
         if (currentRadioChannel != 0) {
             currentRadioChannel = currentRadioChannel - 1;
         } else {
-            currentRadioChannel = 9;
+            currentRadioChannel = maxChannel;
         }
     }
 
@@ -54,7 +76,7 @@ public class Radio {
         if (newCurrentRadioChannel < 0) {
             return;
         }
-        if (newCurrentRadioChannel > 9) {
+        if (newCurrentRadioChannel > maxChannel) {
             return;
         }
         currentRadioChannel = newCurrentRadioChannel;
