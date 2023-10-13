@@ -1,5 +1,12 @@
 package javaqajacoco.hwoop2.smarthome;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 public class Radio {
 
     private int currentRadioChannel;
@@ -7,32 +14,30 @@ public class Radio {
     private int channelQuantity = 10;
     private int maxChannel = channelQuantity - 1;
 
-    public Radio(int channelQuantity)
-    {
-    this.channelQuantity = channelQuantity;
-    if (channelQuantity == 0) {
-        maxChannel = 0;
-    } else {
-        this.maxChannel = channelQuantity - 1;
-    }
-    }
-
-    public Radio () {
-
+    public Radio(int channelQuantity) {
+        this.channelQuantity = channelQuantity;
+        if (channelQuantity == 0) {
+            maxChannel = 0;
+        } else {
+            this.maxChannel = channelQuantity - 1;
+        }
     }
 
-    public int getCurrentRadioChannel() {
-        return currentRadioChannel;
+    public void nextRadioChannel() {
+        if (currentRadioChannel != maxChannel) {
+            currentRadioChannel = currentRadioChannel + 1;
+        } else {
+            currentRadioChannel = 0;
+        }
     }
 
-    public int getCurrentSoundVolume() {
-        return currentSoundVolume;
-    }
-    public int getChannelQuantity() {
-        return channelQuantity;
-    }
-    public int getMaxChannel() {
-        return maxChannel;
+    public void prevRadioChannel() {
+
+        if (currentRadioChannel != 0) {
+            currentRadioChannel = currentRadioChannel - 1;
+        } else {
+            currentRadioChannel = maxChannel;
+        }
     }
 
     public void increaseVolume() {
@@ -52,25 +57,6 @@ public class Radio {
             currentSoundVolume = 0;
         }
     }
-
-
-    public void nextRadioChannel() {
-        if (currentRadioChannel != maxChannel) {
-            currentRadioChannel = currentRadioChannel + 1;
-        } else {
-            currentRadioChannel = 0;
-        }
-    }
-
-    public void prevRadioChannel() {
-
-        if (currentRadioChannel != 0) {
-            currentRadioChannel = currentRadioChannel - 1;
-        } else {
-            currentRadioChannel = maxChannel;
-        }
-    }
-
 
     public void setCurrentRadioChannel(int newCurrentRadioChannel) {
         if (newCurrentRadioChannel < 0) {
