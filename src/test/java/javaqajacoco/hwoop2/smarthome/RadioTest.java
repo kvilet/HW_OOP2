@@ -6,6 +6,29 @@ import org.junit.jupiter.api.Test;
 public class RadioTest {
 
     @Test
+
+    public void setPersonalQuantityRadioChannels() {
+        Radio radio = new Radio(16);
+
+        Assertions.assertEquals(16, radio.getChannelQuantity());
+        Assertions.assertEquals(15, radio.getMaxChannel());
+    }
+
+    @Test
+    public void setDefaultQuantityRadioChannels() {
+        Radio radio = new Radio();
+        Assertions.assertEquals(10, radio.getChannelQuantity());
+        Assertions.assertEquals(9, radio.getMaxChannel());
+    }
+
+    @Test
+    public void setZeroQuantityRadioChannels() {
+        Radio radio = new Radio(0);
+        Assertions.assertEquals(0, radio.getChannelQuantity());
+        Assertions.assertEquals(0, radio.getMaxChannel());
+    }
+
+    @Test
     public void shouldSwitchRadioStation() {
         Radio radio = new Radio();
         radio.setCurrentRadioChannel(4);
